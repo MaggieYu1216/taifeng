@@ -13,6 +13,7 @@ for (const text of ['台风实况面板', '路径示意图', '蓝色预警', '�
 assert.match(html, /虚构数据，不代表真实台风和官方预警/);
 assert.equal((html.match(/type="checkbox"/g) || []).length, 16);
 assert.match(css, /html\[data-theme="night"\]/);
+assert.doesNotMatch(css, /body\{[^}]*min-width:320px/, '320px 小屏不应因固定最小宽度产生横向滚动');
 assert.match(js, /localStorage/);
 console.log('页面结构检查通过：实况、路径、四级清单、演示标记和双主题均已包含。');
 
