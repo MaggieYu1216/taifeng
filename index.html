@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="台风一屏通演示页面：台风实况、移动路径和居民行动清单。" />
-  <title>台风一屏通｜演示</title>
+  <meta name="description" content="台风一屏通：浙江省台风实况、移动路径和沿海居民行动清单。" />
+  <title>台风一屏通</title>
   <link rel="stylesheet" href="styles.css" />
   <script src="app.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">跳到主要内容</a>
-  <div class="demo-bar" role="status"><b>演示</b><span>以下均为虚构数据，不代表真实台风和官方预警</span></div>
+  <div class="demo-bar" id="data-status-bar" role="status"><b id="data-status-badge">加载中</b><span id="data-status-message">正在读取浙江省台风路径实时发布系统数据</span></div>
 
   <header class="site-header">
     <a class="brand" href="#top" aria-label="台风一屏通首页">
@@ -30,16 +30,16 @@
   <main id="main-content">
     <section class="hero" id="top" aria-labelledby="storm-name">
       <div class="status-row">
-        <span>⌖ 演示城市 · 厦门</span><span><i></i> 演示更新于 10:30</span>
+        <span id="location-label">⌖ 浙江沿海</span><span><i></i> <span id="update-label">正在更新</span></span>
       </div>
 
       <div class="dashboard">
         <article class="live-panel" aria-label="台风实况面板">
           <div class="live-head">
             <div>
-              <p class="eyebrow">DEMO-01 · 演示台风</p>
+              <p class="eyebrow" id="storm-code">DEMO-01 · 演示台风</p>
               <h1 id="storm-name">晨曦 <small>CHENXI</small></h1>
-              <p class="storm-level"><b>强台风</b> 正在西北方向移动</p>
+              <p class="storm-level"><b>强台风</b> <span>正在西北方向移动</span></p>
             </div>
             <div class="storm-icon" aria-hidden="true">
               <svg viewBox="0 0 120 120"><path d="M91 22C60 3 20 20 15 56c-4 29 20 53 49 49 23-3 39-25 35-48-3-18-20-30-38-27-14 2-24 15-21 29 2 11 13 18 24 16 8-1 14-9 12-17"/><circle cx="61" cy="59" r="6"/></svg>
@@ -47,26 +47,26 @@
           </div>
 
           <div class="metrics" aria-label="主要实况数据">
-            <div><span>最大风力</span><strong>14<small>级</small></strong><em>42 米/秒</em></div>
-            <div><span>中心气压</span><strong>955<small>hPa</small></strong><em>强度维持</em></div>
-            <div><span>移动速度</span><strong>18<small>km/h</small></strong><em>西北方向</em></div>
+            <div data-metric="wind"><span>最大风力</span><strong>14<small>级</small></strong><em>42 米/秒</em></div>
+            <div data-metric="pressure"><span>中心气压</span><strong>955<small>hPa</small></strong><em>最新实况</em></div>
+            <div data-metric="move"><span>移动速度</span><strong>18<small>km/h</small></strong><em>西北方向</em></div>
           </div>
 
           <div class="where">
             <span class="where-icon" aria-hidden="true">⌖</span>
-            <p><small>现在在哪里</small><strong>厦门东南方向约 420 公里海面</strong><span>北纬 21.8° · 东经 121.6°</span></p>
+            <p><small>现在在哪里</small><strong id="where-text">厦门东南方向约 420 公里海面</strong><span id="coordinates">北纬 21.8° · 东经 121.6°</span></p>
           </div>
 
           <div class="do-now">
             <small>你现在该做什么</small>
-            <strong>收回阳台物品，避开海边，留意本地最新通知</strong>
-            <a href="#yellow-plan">查看黄色预警行动清单 →</a>
+            <strong id="action-now">收回阳台物品，避开海边，留意本地最新通知</strong>
+            <a href="#plans">查看分级预警行动清单 →</a>
           </div>
         </article>
 
         <article class="track-panel" aria-labelledby="track-title">
           <div class="panel-title">
-            <div><p class="eyebrow">未来 36 小时 · 演示路径</p><h2 id="track-title">路径示意图</h2></div>
+            <div><p class="eyebrow" id="track-eyebrow">未来路径 · 示意位置</p><h2 id="track-title">路径示意图</h2></div>
             <div class="legend"><span><i></i>已走路径</span><span><i></i>预测路径</span></div>
           </div>
 
@@ -91,9 +91,9 @@
               <g class="current" transform="translate(465 245)" filter="url(#glow)"><circle r="18"/><circle r="7"/></g>
               <g class="now-label" transform="translate(482 216)"><rect width="92" height="31" rx="15"/><text x="46" y="20" text-anchor="middle">现在 · 10:30</text></g>
               <g class="times"><text x="405" y="244">今天 18时</text><text x="298" y="140">明天 06时</text><text x="190" y="84">明天 18时</text></g>
-              <text class="sea" x="560" y="105">西北太平洋</text><text class="watermark" x="535" y="365">演示路径 · 非预报</text>
+              <text class="sea" x="560" y="105">西北太平洋</text><text class="watermark" id="map-watermark" x="535" y="365">演示路径 · 非预报</text>
             </svg>
-            <div class="map-note"><b aria-hidden="true">↖</b><p><strong>预计向西北方向移动</strong><small>路径存在不确定性，请以官方最新预报为准</small></p></div>
+            <div class="map-note"><b aria-hidden="true">↖</b><p><strong id="map-summary">预计向西北方向移动</strong><small>路径存在不确定性，请以官方最新预报为准</small></p></div>
           </div>
         </article>
       </div>
@@ -102,7 +102,7 @@
     <section class="plans" id="plans" aria-labelledby="plans-title">
       <div class="section-head">
         <div><p class="eyebrow">把预警变成可以完成的小事</p><h2 id="plans-title">分级行动清单</h2></div>
-        <p>这里是演示版居民行动建议。停课、停工、停运或转移，请以当地政府最新通知为准。</p>
+        <p>以下是通用居民行动建议，不代表浙江省当前预警级别。停课、停工、停运或转移，请以当地政府最新通知为准。</p>
       </div>
 
       <div class="plan-grid">
@@ -153,10 +153,10 @@
       </div>
     </section>
 
-    <section class="safety-note" aria-labelledby="safety-title"><i>!</i><div><h2 id="safety-title">这是一张演示页面，不是正在生效的预警</h2><p>正式版本中的台风位置、路径、预警和通知必须来自权威机构，并显示来源与发布时间。任何时候都应以当地政府、气象台和应急管理部门的最新通知为准。</p></div><b>DEMO ONLY</b></section>
+    <section class="safety-note" aria-labelledby="safety-title"><i>!</i><div><h2 id="safety-title">台风路径不等于本地预警</h2><p id="source-note">数据来源：<a href="https://typhoon.slt.zj.gov.cn/" target="_blank" rel="noopener">浙江省台风路径实时发布系统</a>。行动清单是一般性提示，停课、停工、停运或转移请以当地政府最新通知为准。</p></div><b id="source-badge">官方数据源</b></section>
   </main>
 
-  <footer><div><strong>台风一屏通</strong><span>让关键信息更快抵达</span></div><p>演示版本 · 数据与名称均为虚构 · 2026</p></footer>
+  <footer><div><strong>台风一屏通</strong><span>让关键信息更快抵达</span></div><p>每 15 分钟尝试更新 · 2026</p></footer>
   <div class="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
