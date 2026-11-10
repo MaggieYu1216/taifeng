@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="day">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="台风一屏通演示页面：台风实况、移动路径和居民行动清单。" />
+  <title>台风一屏通｜演示</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <div class="demo-bar" role="status"><b>演示</b><span>以下均为虚构数据，不代表真实台风和官方预警</span></div>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="台风一屏通首页">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 48 48"><path d="M33 8c-9-4-20 0-23 9-3 7 1 15 9 18 6 2 12-1 14-7 2-5-1-10-5-11-4-2-8 1-9 4-1 3 1 6 4 7"/><circle cx="24" cy="24" r="2.5"/></svg>
+      </span>
+      <span><strong>台风一屏通</strong><small>沿海居民安全信息</small></span>
+    </a>
+    <div class="header-tools">
+      <a href="#plans">行动清单</a>
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="切换到夜间主题">
+        <span aria-hidden="true">☀</span><i><em></em></i><span aria-hidden="true">☾</span><b>白天</b>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" id="top" aria-labelledby="storm-name">
+      <div class="status-row">
+        <span>⌖ 演示城市 · 厦门</span><span><i></i> 演示更新于 10:30</span>
+      </div>
+
+      <div class="dashboard">
+        <article class="live-panel" aria-label="台风实况面板">
+          <div class="live-head">
+            <div>
+              <p class="eyebrow">DEMO-01 · 演示台风</p>
+              <h1 id="storm-name">晨曦 <small>CHENXI</small></h1>
+              <p class="storm-level"><b>强台风</b> 正在西北方向移动</p>
+            </div>
+            <div class="storm-icon" aria-hidden="true">
+              <svg viewBox="0 0 120 120"><path d="M91 22C60 3 20 20 15 56c-4 29 20 53 49 49 23-3 39-25 35-48-3-18-20-30-38-27-14 2-24 15-21 29 2 11 13 18 24 16 8-1 14-9 12-17"/><circle cx="61" cy="59" r="6"/></svg>
+            </div>
+          </div>
+
+          <div class="metrics" aria-label="主要实况数据">
+            <div><span>最大风力</span><strong>14<small>级</small></strong><em>42 米/秒</em></div>
+            <div><span>中心气压</span><strong>955<small>hPa</small></strong><em>强度维持</em></div>
+            <div><span>移动速度</span><strong>18<small>km/h</small></strong><em>西北方向</em></div>
+          </div>
+
+          <div class="where">
+            <span class="where-icon" aria-hidden="true">⌖</span>
+            <p><small>现在在哪里</small><strong>厦门东南方向约 420 公里海面</strong><span>北纬 21.8° · 东经 121.6°</span></p>
+          </div>
+
+          <div class="do-now">
+            <small>你现在该做什么</small>
+            <strong>收回阳台物品，避开海边，留意本地最新通知</strong>
+            <a href="#yellow-plan">查看黄色预警行动清单 →</a>
+          </div>
+        </article>
+
+        <article class="track-panel" aria-labelledby="track-title">
+          <div class="panel-title">
+            <div><p class="eyebrow">未来 36 小时 · 演示路径</p><h2 id="track-title">路径示意图</h2></div>
+            <div class="legend"><span><i></i>已走路径</span><span><i></i>预测路径</span></div>
+          </div>
+
+          <div class="map-box">
+            <svg class="track-map" viewBox="0 0 760 390" role="img" aria-labelledby="map-title map-desc">
+              <title id="map-title">演示台风晨曦路径图</title>
+              <desc id="map-desc">台风从东南海面向西北方向移动，预计逐渐靠近厦门沿海。路径仅为演示。</desc>
+              <defs>
+                <linearGradient id="ocean" x1="0" y1="0" x2="1" y2="1"><stop offset="0"/><stop offset="1"/></linearGradient>
+                <filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              </defs>
+              <rect class="ocean" width="760" height="390" rx="24"/>
+              <g class="map-grid"><path d="M0 78H760M0 156H760M0 234H760M0 312H760"/><path d="M152 0V390M304 0V390M456 0V390M608 0V390"/></g>
+              <path class="cone" d="M465 245C392 223 298 168 218 100L140 166c101 73 194 115 287 135Z"/>
+              <path class="land" d="M0 0h222c-18 24-35 38-63 50-18 8-24 26-18 43 7 19-3 42-23 52-15 8-21 24-15 39 7 17 0 34-17 44-21 13-41 27-49 47-7 17-20 30-37 37V0Z"/>
+              <path class="island" d="M215 135c10-10 25-9 31 2 6 12-2 27-16 30-12 2-23-4-25-14-2-6 2-13 10-18Z"/>
+              <g class="city"><circle cx="133" cy="107" r="5"/><path d="M133 107l18 18"/><text x="157" y="133">厦门</text></g>
+              <path class="past" d="M665 330C610 316 560 288 500 261L465 245"/>
+              <path class="future" d="M465 245C405 216 356 190 308 162S221 116 170 92"/>
+              <g class="past-points"><circle cx="665" cy="330" r="5"/><circle cx="610" cy="313" r="5"/><circle cx="552" cy="283" r="5"/><circle cx="500" cy="261" r="5"/></g>
+              <g class="future-points"><circle cx="408" cy="218" r="6"/><circle cx="356" cy="190" r="6"/><circle cx="308" cy="162" r="6"/><circle cx="254" cy="132" r="6"/><circle cx="207" cy="108" r="6"/></g>
+              <g class="current" transform="translate(465 245)" filter="url(#glow)"><circle r="18"/><circle r="7"/></g>
+              <g class="now-label" transform="translate(482 216)"><rect width="92" height="31" rx="15"/><text x="46" y="20" text-anchor="middle">现在 · 10:30</text></g>
+              <g class="times"><text x="405" y="244">今天 18时</text><text x="298" y="140">明天 06时</text><text x="190" y="84">明天 18时</text></g>
+              <text class="sea" x="560" y="105">西北太平洋</text><text class="watermark" x="535" y="365">演示路径 · 非预报</text>
+            </svg>
+            <div class="map-note"><b aria-hidden="true">↖</b><p><strong>预计向西北方向移动</strong><small>路径存在不确定性，请以官方最新预报为准</small></p></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="plans" id="plans" aria-labelledby="plans-title">
+      <div class="section-head">
+        <div><p class="eyebrow">把预警变成可以完成的小事</p><h2 id="plans-title">分级行动清单</h2></div>
+        <p>这里是演示版居民行动建议。停课、停工、停运或转移，请以当地政府最新通知为准。</p>
+      </div>
+
+      <div class="plan-grid">
+        <article class="plan blue" id="blue-plan" data-plan="blue">
+          <header><i>Ⅳ</i><div><small>蓝色预警</small><h3>开始留意</h3></div><b class="progress"><span>0</span>/4</b></header>
+          <p>台风可能影响当地，先把准备做在前面。</p>
+          <ul>
+            <li><label><input type="checkbox"/><i></i><span>关注气象台和当地政府更新</span></label></li>
+            <li><label><input type="checkbox"/><i></i><span>收好阳台花盆和易被吹走的物品</span></label></li>
+            <li><label><input type="checkbox"/><i></i><span>检查门窗、屋顶和排水口</span></label></li>
+            <li><label><input type="checkbox"/><i></i><span>准备饮用水、常用药和充电宝</span></label></li>
+          </ul><button type="button">清空本级勾选</button>
+        </article>
+
+        <article class="plan yellow current-plan" id="yellow-plan" data-plan="yellow">
+          <em>演示当前级别</em>
+          <header><i>Ⅲ</i><div><small>黄色预警</small><h3>完成准备</h3></div><b class="progress"><span>0</span>/4</b></header>
+          <p>风雨逐渐增强，减少不必要的室外活动。</p>
+          <ul>
+            <li><label><input type="checkbox"/><i></i><span>不去海边、河边、山坡和低洼地</span></label></li>
+            <li><label><input type="checkbox"/><i></i><span>把车辆移出地下车库和易涝路段</span></label></li>
+            <li><label><input type="checkbox"/><i></i><span>确认老人、儿童和病人有人照顾</span></label></li>
+            <li><label><input type="checkbox"/><i></i><span>手机充满电，储备够用的水和食物</span></label></li>
+          </ul><button type="button">清空本级勾选</button>
+        </article>
+
+        <article class="plan orange" id="orange-plan" data-plan="orange">
+          <header><i>Ⅱ</i><div><small>橙色预警</small><h3>立即避险</h3></div><b class="progress"><span>0</span>/4</b></header>
+          <p>台风可能带来严重影响，尽快进入安全状态。</p>
+          <ul>
+            <li><label><input type="checkbox"/><i></i><span>停止非必要外出，尽快回到安全室内</span></label></li>
+            <li><label><input type="checkbox"/><i></i><span>远离窗户、玻璃门和临时搭建物</span></label></li>
+            <li><label><input type="checkbox"/><i></i><span>发现进水风险时切断危险区域电源</span></label></li>
+            <li><label><input type="checkbox"/><i></i><span>整理证件、药品，准备按通知转移</span></label></li>
+          </ul><button type="button">清空本级勾选</button>
+        </article>
+
+        <article class="plan red" id="red-plan" data-plan="red">
+          <header><i>Ⅰ</i><div><small>红色预警</small><h3>保命优先</h3></div><b class="progress"><span>0</span>/4</b></header>
+          <p>可能出现特别严重影响，严格执行官方命令。</p>
+          <ul>
+            <li><label><input type="checkbox"/><i></i><span>立即执行政府发布的转移或避难命令</span></label></li>
+            <li><label><input type="checkbox"/><i></i><span>未经允许，不自行返回危险区域</span></label></li>
+            <li><label><input type="checkbox"/><i></i><span>保持电话畅通，向家人报告所在位置</span></label></li>
+            <li><label><input type="checkbox"/><i></i><span>遇险拨打 110、119 或 120</span></label></li>
+          </ul><button type="button">清空本级勾选</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="safety-note" aria-labelledby="safety-title"><i>!</i><div><h2 id="safety-title">这是一张演示页面，不是正在生效的预警</h2><p>正式版本中的台风位置、路径、预警和通知必须来自权威机构，并显示来源与发布时间。任何时候都应以当地政府、气象台和应急管理部门的最新通知为准。</p></div><b>DEMO ONLY</b></section>
+  </main>
+
+  <footer><div><strong>台风一屏通</strong><span>让关键信息更快抵达</span></div><p>演示版本 · 数据与名称均为虚构 · 2026</p></footer>
+  <div class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
+
