@@ -23,7 +23,7 @@
 - [x] 抓取失败时自动降级为明确标注的演示数据
 - [x] GitHub Actions 每 15 分钟抓取与发布配置
 - [x] 手机小屏、昼夜主题、刷新保存和控制台检查
-- [ ] GitHub Pages 发布上线
+- [x] GitHub Pages 发布上线：[打开网站](https://maggieyu1216.github.io/taifeng/)
 
 详细方案见 [docs/PROJECT_PLAN.md](docs/PROJECT_PLAN.md)。
 

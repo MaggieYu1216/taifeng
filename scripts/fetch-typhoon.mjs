@@ -1,5 +1,8 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
+import { setDefaultResultOrder } from 'node:dns';
+
+setDefaultResultOrder('ipv4first');
 
 const SOURCE_URL = 'https://typhoon.slt.zj.gov.cn/';
 const API_ROOT = `${SOURCE_URL}Api`;
@@ -10,12 +13,25 @@ function shanghaiYear() {
 }
 
 async function getJson(url) {
-  const response = await fetch(url, {
-    headers: { Referer: SOURCE_URL, 'User-Agent': 'typhoon-one-screen/1.0' },
-    signal: AbortSignal.timeout(15000),
-  });
-  if (!response.ok) throw new Error(`HTTP ${response.status}`);
-  return response.json();
+  let lastError;
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    try {
+      const response = await fetch(url, {
+        headers: {
+          Accept: 'application/json, text/plain, */*', Referer: SOURCE_URL,
+          'User-Agent': 'Mozilla/5.0 (compatible; typhoon-one-screen/1.0)',
+        },
+        signal: AbortSignal.timeout(20000),
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return response.json();
+    } catch (error) {
+      lastError = error;
+      if (attempt < 3) await new Promise(resolveDelay => setTimeout(resolveDelay, attempt * 1500));
+    }
+  }
+  const detail = lastError?.cause?.code || lastError?.cause?.message || lastError?.message || '未知网络错误';
+  throw new Error(`官方接口连续 3 次连接失败（${detail}）`);
 }
 
 function latestPoint(points = []) {
